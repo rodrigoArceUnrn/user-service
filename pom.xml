@@ -13,9 +13,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>user-service</name>
-	<description>Microservicio sobre notificaciones.</description>
+	<description>Microservicio sobre Usuarios.</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

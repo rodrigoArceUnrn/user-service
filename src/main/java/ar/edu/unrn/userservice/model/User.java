@@ -10,17 +10,17 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"username","mail"}))
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"username","email"}))
 public class User extends BaseEntity implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 327336392782096608L;
 
     private String username;
     private String password;
-    private String mail;
+    private String email;
     private Role role;
     private String access_token;
-    private boolean active = false;
+    private boolean active = true;
 
     public User() {
     }
@@ -51,17 +51,17 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 
     @Transient
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Transient
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Transient
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -94,13 +94,13 @@ public class User extends BaseEntity implements Serializable, UserDetails {
         this.role = role;
     }
 
-    @Column(name = "mail")
-    public String getMail() {
-        return mail;
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 

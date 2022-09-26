@@ -1,38 +1,58 @@
 package ar.edu.unrn.userservice.controller;
 
-import ar.edu.unrn.userservice.auth.JwtAuthenticationRequest;
-import ar.edu.unrn.userservice.auth.JwtAuthenticationResponse;
 import ar.edu.unrn.userservice.model.User;
 import ar.edu.unrn.userservice.service.UserService;
-import org.modelmapper.ModelMapper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"}, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+    @PostMapping("user")
+    public User login(@RequestParam("email") String username, @RequestParam("password") String password) {
 
-    @RequestMapping(value = "oauth/token", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody JwtAuthenticationRequest request) throws AuthenticationException {
-        System.out.println("INTENTANDO INGRESAR");
-        final String token = userService.authenticate(request.getEmail(), request.getPassword());
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        String token = getJWTToken(username);
+        User user = this.userService.getUser(username);
+        user.setAccessToken(token);
+        this.userService.save(user);
+        return  user;
     }
 
-    @RequestMapping(value = "oauth/token/logout", method = RequestMethod.PUT)
-    public ResponseEntity logout() {
-        User user = userService.getLoggedUser();
-        user.setAccessToken(null);
-        userService.logout(user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+    private String getJWTToken(String username) {
+        String secretKey = "secret";
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_ADMIN");
 
+        String token = Jwts
+                .builder()
+                .setId("secret")
+                .setSubject(username)
+                .claim("authorities",
+                        grantedAuthorities.stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.toList()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .signWith(SignatureAlgorithm.HS512,
+                        secretKey.getBytes()).compact();
+
+        return token;
+    }
 }

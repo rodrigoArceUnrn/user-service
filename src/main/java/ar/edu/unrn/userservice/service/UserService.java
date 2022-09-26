@@ -1,5 +1,4 @@
 package ar.edu.unrn.userservice.service;
-
 import ar.edu.unrn.userservice.generic.GenericService;
 import ar.edu.unrn.userservice.model.User;
 import org.apache.catalina.connector.Response;
@@ -29,8 +28,6 @@ public interface UserService extends GenericService<User, Long> {
     void notifyUserClientByEmail(User user, String newPasswordUser);
 
     User getUser(String username);
-
-    String authenticate(String email, String password);
 
     User registerUser(User user);
 

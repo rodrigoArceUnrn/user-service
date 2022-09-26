@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 public enum Role implements GrantedAuthority, Serializable {
 
-    ROLE_ADMIN("Administrador"), ROLE_CLIENTE("Cliente");
+    ROLE_ADMIN("Administrador"), ROLE_USER("Cliente");
 
     public static Role[] getRoles() {
         Role[] roles = new Role[2];
         roles[0] = ROLE_ADMIN;
-        roles[1] = ROLE_CLIENTE;
+        roles[1] = ROLE_USER;
         return roles;
     }
 

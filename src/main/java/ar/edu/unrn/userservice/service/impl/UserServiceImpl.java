@@ -1,12 +1,12 @@
-package ar.edu.unrn.userservice.service.implementation;
+package ar.edu.unrn.userservice.service.impl;
 
-import ar.edu.unrn.userservice.auth.JwtTokenUtil;
+
 import ar.edu.unrn.userservice.config.ParamValue;
 import ar.edu.unrn.userservice.dao.UserDAO;
 import ar.edu.unrn.userservice.generic.GenericDAO;
 import ar.edu.unrn.userservice.generic.GenericServiceImpl;
 import ar.edu.unrn.userservice.model.User;
-import ar.edu.unrn.userservice.security.AuthenticationService;
+
 import ar.edu.unrn.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -25,24 +25,11 @@ import java.util.List;
 import java.util.Map;
 
 @Component("userService")
-public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserDetailsService, UserService {
-
-    @Autowired
-    AuthenticationService authenticationService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
+public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
 
     @Autowired
     UserDAO entityDAO;
 
-    @Autowired
-    JwtTokenUtil jwtTokenUtil;
-
-    public static final String TOKEN_INVALID = "invalidToken";
-    public static final String TOKEN_EXPIRED = "expired";
-    public static final String TOKEN_VALID = "valid";
-    //TODO: PARA EL FUTURO ENVÍO DE MENSAJES private SendEmail sendEmail = new SendEmail();
 
     @Autowired
     public UserServiceImpl(GenericDAO<User, Long> entityDAO) {
@@ -51,12 +38,6 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
 
     public UserDAO getEntityDAO() {
         return entityDAO;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        return findByName(username);
     }
 
     public User findByName(String username) {
@@ -184,25 +165,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         return getEntityDAO().getEntityByName(username);
     }
 
-    @Transactional
-    @Override
-    public String authenticate(String email, String password) {
 
-        try {
-
-            if (authenticationService.login(email, password)) {
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                User user = (User) authentication.getPrincipal();
-                user.setAccessToken(jwtTokenUtil.generateToken(user));
-                this.save(user);
-                return user.getAccessToken();
-            } else
-                return null;
-
-        } catch (BadCredentialsException e) {
-            return e.getMessage();
-        }
-    }
 
     @Override
     public User registerUser(User user) {
@@ -218,7 +181,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
 
     @Override
     public boolean validateUserClientUniqueness(User user) {
-        if (this.validateMailUniqueness(user.getMail()) &&
+        if (this.validateMailUniqueness(user.getEmail()) &&
                 this.validateUserUniqueness(user)) {
             return true;
         } else

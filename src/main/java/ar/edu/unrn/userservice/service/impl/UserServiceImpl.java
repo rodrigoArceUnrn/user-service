@@ -3,15 +3,19 @@ package ar.edu.unrn.userservice.service.impl;
 
 import ar.edu.unrn.userservice.config.ParamValue;
 import ar.edu.unrn.userservice.dao.UserDAO;
+import ar.edu.unrn.userservice.exception.InvalidCredentialsException;
 import ar.edu.unrn.userservice.generic.GenericDAO;
 import ar.edu.unrn.userservice.generic.GenericServiceImpl;
 import ar.edu.unrn.userservice.model.User;
 
 import ar.edu.unrn.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,7 +49,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         try {
             user = entityDAO.getEntityByName(username);
         } catch (NoResultException e) {
-            throw new UsernameNotFoundException("Credenciales erróneas.");
+            throw new UsernameNotFoundException("Username erroneo.");
         }
         return user;
     }
@@ -128,7 +132,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         getEntityDAO().update(user);
     }
 
-    void encryptKey(User t) {
+    public void encryptKey(User t) {
         t.setPassword(encoder().encode(t.getPassword()));
     }
 
@@ -159,10 +163,22 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         return getEntityDAO().getEntityByMail(username);
     }
 
+    public void validatePassword(String pass1, String pass2){
+        if (!pass1.equals(pass2)){
+            throw new InvalidCredentialsException("Contraseña inválida.");
+        }
+    }
+
+
 
     @Override
     public User getUser(String username) {
-        return getEntityDAO().getEntityByName(username);
+        try{
+            return getEntityDAO().getEntityByName(username);
+        }catch (NoResultException e){
+            throw new UsernameNotFoundException("No existe usuario con ese username");
+        }
+
     }
 
 

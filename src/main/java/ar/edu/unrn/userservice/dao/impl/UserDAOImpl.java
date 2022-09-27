@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.dao.implementation;
+package ar.edu.unrn.userservice.dao.impl;
 
 import ar.edu.unrn.userservice.dao.UserDAO;
 import ar.edu.unrn.userservice.generic.GenericDAOJpaImpl;

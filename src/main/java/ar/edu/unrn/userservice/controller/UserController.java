@@ -1,5 +1,6 @@
 package ar.edu.unrn.userservice.controller;
 
+import ar.edu.unrn.userservice.exception.InvalidCredentialsException;
 import ar.edu.unrn.userservice.model.User;
 import ar.edu.unrn.userservice.service.UserService;
 import io.jsonwebtoken.Jwts;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,12 +29,21 @@ public class UserController {
 
     @PostMapping("user")
     public User login(@RequestParam("email") String username, @RequestParam("password") String password) {
+        User u = null;
+        try{
+            u = this.userService.findByName(username);
+            this.userService.validatePassword(u.getPassword(),password);
+            String token = getJWTToken(username);
+            u.setAccessToken(token);
+            this.userService.save(u);
+        }catch (UsernameNotFoundException e){
+            u = null;
+        }catch(InvalidCredentialsException e2){
+            u = null;
+        }finally {
+            return u;
+        }
 
-        String token = getJWTToken(username);
-        User user = this.userService.getUser(username);
-        user.setAccessToken(token);
-        this.userService.save(user);
-        return  user;
     }
 
     private String getJWTToken(String username) {

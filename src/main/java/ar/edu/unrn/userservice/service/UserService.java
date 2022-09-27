@@ -43,4 +43,6 @@ public interface UserService extends GenericService<User, Long> {
 
     User getAuthenticatedUser();
 
+    void validatePassword(String pass1, String pass2 );
+
 }

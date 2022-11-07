@@ -46,6 +46,10 @@ public class UserController {
 
     }
 
+
+
+
+
     private String getJWTToken(String username) {
         String secretKey = "secret";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
@@ -66,4 +70,6 @@ public class UserController {
 
         return token;
     }
+
+
 }

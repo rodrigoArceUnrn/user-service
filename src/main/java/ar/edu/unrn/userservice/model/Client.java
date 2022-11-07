@@ -9,9 +9,10 @@ public class Client extends BaseEntity implements java.io.Serializable {
 
     private String name;
     private String lastname;
-    private String document_type;
+    private String documentType;
     private String document;
-    private LocalDate date_of_birth;
+
+    private LocalDate dateOfBirth;
     private User user;
 
     public Client() {
@@ -47,11 +48,11 @@ public class Client extends BaseEntity implements java.io.Serializable {
 
     @Column(name = "document_type")
     public String getDocumentType() {
-        return document_type;
+        return documentType;
     }
 
     public void setDocumentType(String document_type) {
-        this.document_type = document_type;
+        this.documentType = document_type;
     }
 
 
@@ -64,11 +65,12 @@ public class Client extends BaseEntity implements java.io.Serializable {
         this.document = document;
     }
 
+    @Column(name = "date_of_birth")
     public LocalDate getDateOfBirth() {
-        return date_of_birth;
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate date_of_birth) {
-        this.date_of_birth = date_of_birth;
+        this.dateOfBirth = date_of_birth;
     }
 }

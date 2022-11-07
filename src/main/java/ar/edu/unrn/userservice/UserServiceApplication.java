@@ -1,6 +1,7 @@
 package ar.edu.unrn.userservice;
 
 import ar.edu.unrn.userservice.auth.JWTAuthorizationFilter;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +32,7 @@ public class UserServiceApplication {
 					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 					.authorizeRequests()
 					.antMatchers(HttpMethod.POST, "/user").permitAll()
+					.antMatchers("/", "/login**", "/actuator/**", "/v3/api-docs/**", "/swagger-ui/**","/clients/**").permitAll()
 					.anyRequest().authenticated();
 		}
 
@@ -46,6 +48,11 @@ public class UserServiceApplication {
 		public PasswordEncoder passwordEncoder() {
 			return new BCryptPasswordEncoder();
 		}
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
 }

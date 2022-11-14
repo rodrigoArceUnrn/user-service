@@ -3,15 +3,11 @@ package ar.edu.unrn.userservice.controller;
 import ar.edu.unrn.userservice.dto.ClientDTO;
 import ar.edu.unrn.userservice.exception.ClientException;
 import ar.edu.unrn.userservice.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import ar.edu.unrn.userservice.service.impl.RabbitService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.annotation.security.RolesAllowed;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200/"})
@@ -20,8 +16,11 @@ public class ClientController {
 
     final ClientService clientService;
 
-    public ClientController(ClientService clientService) {
+    final RabbitService rabbitService;
+
+    public ClientController(ClientService clientService, RabbitService rabbitService) {
         this.clientService = clientService;
+        this.rabbitService = rabbitService;
     }
 
 
@@ -38,6 +37,16 @@ public class ClientController {
     public ResponseEntity getProduct(@PathVariable Long id) {
         try {
             return ResponseEntity.ok().body(clientService.getClientById(id));
+        } catch (ClientException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/testRabbit/{message}")
+    public ResponseEntity sendRabbit(@PathVariable String message) {
+        try {
+            rabbitService.sendToRabbit(message);
+            return ResponseEntity.ok().build();
         } catch (ClientException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

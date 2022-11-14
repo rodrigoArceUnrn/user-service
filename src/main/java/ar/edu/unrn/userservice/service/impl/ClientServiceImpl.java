@@ -3,6 +3,7 @@ package ar.edu.unrn.userservice.service.impl;
 import ar.edu.unrn.userservice.dto.ClientDTO;
 import ar.edu.unrn.userservice.exception.ClientException;
 import ar.edu.unrn.userservice.model.Client;
+import ar.edu.unrn.userservice.rabbitmq.Producer;
 import ar.edu.unrn.userservice.repository.ClientRepository;
 import ar.edu.unrn.userservice.service.ClientService;
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,8 @@ public class ClientServiceImpl implements ClientService {
 
     final
     ClientRepository clientRepository;
+
+    Producer producer = new Producer();
 
     private final ModelMapper modelMapper;
 
@@ -25,6 +28,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO update(ClientDTO clientDTO) {
         Client client = clientRepository.save(convertToEntity(clientDTO));
+       // producer.sendMessage("se actualizo cliente");
         return convertToDTO(client);
     }
 

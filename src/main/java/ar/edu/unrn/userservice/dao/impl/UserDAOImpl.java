@@ -2,8 +2,8 @@ package ar.edu.unrn.userservice.dao.impl;
 
 import ar.edu.unrn.userservice.dao.UserDAO;
 import ar.edu.unrn.userservice.generic.GenericDAOJpaImpl;
-import ar.edu.unrn.userservice.model.Role;
-import ar.edu.unrn.userservice.model.User;
+import ar.edu.unrn.userservice.security.entity.Role;
+import ar.edu.unrn.userservice.security.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -37,11 +37,11 @@ public class UserDAOImpl extends GenericDAOJpaImpl<User, Long> implements UserDA
         if (lastname != null && !"".equals(lastname))
             predicatesList.add(builder.like(root.get("lastname"), '%' + lastname + '%'));
 
-        String role = (String) filters.get("role");
-        if (role != null && !"".equals(role))
-            predicatesList.add(builder.equal(root.get("role"), Role.valueOf(role)));
+        //String role = (String) filters.get("role");
+        //if (role != null && !"".equals(role))
+        //  predicatesList.add(builder.equal(root.get("role"), Role.valueOf(role)));
 
-        predicatesList.add(builder.isNull(root.get("deleteDate")));
+        //predicatesList.add(builder.isNull(root.get("deleteDate")));
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
     }

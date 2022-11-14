@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
 
-    public static final String EXCHANGE_NAME = "exchange_name";
+    /* public static final String EXCHANGE_NAME = "exchange_name";
     public static final String ROUTING_KEY = "routing_key";
 
     public static final String QUEUE_NAME = "queue_name";
@@ -51,5 +51,5 @@ public class RabbitMqConfig {
     @Bean
     MessageListenerAdapter listenerAdapter(Receiver receiver) {
         return new MessageListenerAdapter(receiver, Receiver.RECEIVE_METHOD_NAME);
-    }
+    } */
 }

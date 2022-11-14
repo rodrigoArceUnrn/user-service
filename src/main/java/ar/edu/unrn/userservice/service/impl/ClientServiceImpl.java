@@ -2,7 +2,7 @@ package ar.edu.unrn.userservice.service.impl;
 
 import ar.edu.unrn.userservice.dto.ClientDTO;
 import ar.edu.unrn.userservice.exception.ClientException;
-import ar.edu.unrn.userservice.model.Client;
+import ar.edu.unrn.userservice.security.entity.Client;
 import ar.edu.unrn.userservice.repository.ClientRepository;
 import ar.edu.unrn.userservice.service.ClientService;
 import org.modelmapper.ModelMapper;

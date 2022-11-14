@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CompletableFuture;
 
 public class Producer {
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(RabbitMqConfig.class);
+    /*ApplicationContext ctx = new AnnotationConfigApplicationContext(RabbitMqConfig.class);
     RabbitTemplate rabbitTemplate = ctx.getBean(RabbitTemplate.class);
 
     public void sendMessage(String msj){
         CompletableFuture.runAsync(() -> rabbitTemplate.convertAndSend(RabbitMqConfig.QUEUE_NAME, msj));
-    }
+    } */
 }

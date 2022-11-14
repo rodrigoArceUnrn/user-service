@@ -1,6 +1,5 @@
 package ar.edu.unrn.userservice.dto;
 
-import ar.edu.unrn.userservice.model.User;
 import lombok.Data;
 
 import java.time.LocalDate;

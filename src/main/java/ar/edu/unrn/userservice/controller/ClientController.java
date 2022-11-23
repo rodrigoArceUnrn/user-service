@@ -1,9 +1,11 @@
 package ar.edu.unrn.userservice.controller;
 
 import ar.edu.unrn.userservice.dto.ClientDTO;
+import ar.edu.unrn.userservice.dto.ClientMessage;
 import ar.edu.unrn.userservice.exception.ClientException;
 import ar.edu.unrn.userservice.service.ClientService;
 import ar.edu.unrn.userservice.service.impl.RabbitService;
+import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +17,23 @@ import org.springframework.web.server.ResponseStatusException;
 public class ClientController {
 
     final ClientService clientService;
-
     final RabbitService rabbitService;
+
+    final Gson gson;
 
     public ClientController(ClientService clientService, RabbitService rabbitService) {
         this.clientService = clientService;
         this.rabbitService = rabbitService;
+        this.gson = new Gson();
     }
-
 
     @PutMapping()
     public ResponseEntity updateClient(@RequestBody ClientDTO clientDTO) {
         try {
-            return ResponseEntity.ok().body(clientService.update(clientDTO));
+            ClientDTO result = clientService.update(clientDTO);
+
+            rabbitService.sendClientUpdateMessage(result);
+            return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -41,16 +47,4 @@ public class ClientController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
-
-    @GetMapping("/testRabbit/{message}")
-    public ResponseEntity sendRabbit(@PathVariable String message) {
-        try {
-            rabbitService.sendToRabbit(message);
-            return ResponseEntity.ok().build();
-        } catch (ClientException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-    }
-
-
 }

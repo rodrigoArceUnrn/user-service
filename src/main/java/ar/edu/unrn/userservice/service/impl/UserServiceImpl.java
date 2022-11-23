@@ -1,25 +1,16 @@
 package ar.edu.unrn.userservice.service.impl;
 
 
-import ar.edu.unrn.userservice.config.ParamValue;
 import ar.edu.unrn.userservice.dao.UserDAO;
 import ar.edu.unrn.userservice.exception.InvalidCredentialsException;
 import ar.edu.unrn.userservice.generic.GenericDAO;
 import ar.edu.unrn.userservice.generic.GenericServiceImpl;
-import ar.edu.unrn.userservice.model.User;
+import ar.edu.unrn.userservice.security.entity.User;
 
 import ar.edu.unrn.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -28,7 +19,7 @@ import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Map;
 
-@Component("userService")
+@Component
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
 
     @Autowired

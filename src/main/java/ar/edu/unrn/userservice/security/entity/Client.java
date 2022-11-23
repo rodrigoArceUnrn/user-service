@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.model;
+package ar.edu.unrn.userservice.security.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

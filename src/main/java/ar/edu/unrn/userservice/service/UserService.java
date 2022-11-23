@@ -1,10 +1,7 @@
 package ar.edu.unrn.userservice.service;
 import ar.edu.unrn.userservice.generic.GenericService;
-import ar.edu.unrn.userservice.model.User;
-import org.apache.catalina.connector.Response;
-import org.springframework.context.annotation.Bean;
+import ar.edu.unrn.userservice.security.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 
 
 public interface UserService extends GenericService<User, Long> {

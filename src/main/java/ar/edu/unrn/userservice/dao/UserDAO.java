@@ -2,7 +2,7 @@ package ar.edu.unrn.userservice.dao;
 
 
 import ar.edu.unrn.userservice.generic.GenericDAO;
-import ar.edu.unrn.userservice.model.User;
+import ar.edu.unrn.userservice.security.entity.User;
 
 import javax.persistence.NoResultException;
 

@@ -28,7 +28,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO update(ClientDTO clientDTO) {
         Client client = clientRepository.save(convertToEntity(clientDTO));
-       // producer.sendMessage("se actualizo cliente");
         return convertToDTO(client);
     }
 

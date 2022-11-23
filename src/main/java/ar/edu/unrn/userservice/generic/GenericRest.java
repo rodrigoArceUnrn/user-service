@@ -1,6 +1,6 @@
 package ar.edu.unrn.userservice.generic;
 
-import ar.edu.unrn.userservice.model.BaseEntity;
+import ar.edu.unrn.userservice.security.entity.BaseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

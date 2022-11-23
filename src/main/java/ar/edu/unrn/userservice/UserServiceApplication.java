@@ -22,7 +22,7 @@ public class UserServiceApplication {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
-	@EnableWebSecurity
+	/* @EnableWebSecurity
 	@Configuration
 	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -48,7 +48,7 @@ public class UserServiceApplication {
 		public PasswordEncoder passwordEncoder() {
 			return new BCryptPasswordEncoder();
 		}
-	}
+	} */
 
 	@Bean
 	public ModelMapper modelMapper() {

@@ -18,7 +18,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_"+user.getRole().getName())); // Spring Security espera el prefijo "ROLE_"
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getRole().getName())); // Spring Security espera el prefijo "ROLE_"
     }
 
     @Override

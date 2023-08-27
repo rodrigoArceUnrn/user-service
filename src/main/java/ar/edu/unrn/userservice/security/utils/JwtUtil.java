@@ -33,7 +33,7 @@ public class JwtUtil {
         claims.put("name", client.getName());
         claims.put("lastname", client.getLastname());
         claims.put("id", client.getId());
-        claims.put("role","ROLE_"+client.getUser().getRole().getName());
+        claims.put("role", "ROLE_" + client.getUser().getRole().getName());
         return claims;
     }
 
@@ -49,7 +49,7 @@ public class JwtUtil {
         }
     }
 
-    public static Jws<Claims> getClaims(String token){
+    public static Jws<Claims> getClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)
                 .build()

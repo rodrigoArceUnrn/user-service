@@ -1,0 +1,10 @@
+package ar.edu.unrn.userservice.dto;
+
+import lombok.Data;
+
+@Data
+public class RoleDTO {
+
+    private String name;
+    private String description;
+}

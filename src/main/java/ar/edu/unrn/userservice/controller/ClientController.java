@@ -1,13 +1,12 @@
 package ar.edu.unrn.userservice.controller;
 
 import ar.edu.unrn.userservice.dto.ClientDTO;
-import ar.edu.unrn.userservice.dto.ClientMessage;
-import ar.edu.unrn.userservice.exception.ClientException;
 import ar.edu.unrn.userservice.service.ClientService;
 import ar.edu.unrn.userservice.service.impl.RabbitService;
 import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,7 +27,7 @@ public class ClientController {
     }
 
     @PutMapping()
-    public ResponseEntity updateClient(@RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<?> updateClient(@RequestBody ClientDTO clientDTO) {
         try {
             ClientDTO result = clientService.update(clientDTO);
 
@@ -40,11 +39,9 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getProduct(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok().body(clientService.getClientById(id));
-        } catch (ClientException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> getClient(@PathVariable Long id) {
+        return ResponseEntity.ok().body(clientService.getClientById(id));
+
     }
 }

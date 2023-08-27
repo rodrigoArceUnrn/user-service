@@ -1,7 +1,6 @@
 package ar.edu.unrn.userservice.dto;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,10 +12,10 @@ public class ClientDTO {
     private String name;
     private String lastname;
     private String documentType;
-    private String document;
-    //private LocalDate dateOfBirth;
+    private String documentNumber;
+    private LocalDate dateOfBirth;
 
-    public String toJsonString(){
+    public String toJsonString() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }

@@ -50,13 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).httpBasic().and()
                 .csrf().disable()
                 .logout()
-                .logoutUrl("/logout") // La URL a la que se enviará la solicitud de logout
-                .logoutSuccessUrl("/login") // La URL a la que se redirigirá después de un logout exitoso
-                .invalidateHttpSession(true) // Invalidar la sesión HTTP
-                .deleteCookies("JSESSIONID") // Eliminar cookies específicas, si es necesario
+                .logoutUrl("/logout") // La URL a la que se enviarï¿½ la solicitud de logout
+                .logoutSuccessUrl("/login") // La URL a la que se redirigirï¿½ despuï¿½s de un logout exitoso
+                .invalidateHttpSession(true) // Invalidar la sesiï¿½n HTTP
+                .deleteCookies("JSESSIONID") // Eliminar cookies especï¿½ficas, si es necesario
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtConfig, userDetailsService));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtConfig, jwtUtil, userDetailsService));
     }
 
     @Bean

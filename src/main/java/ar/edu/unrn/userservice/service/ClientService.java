@@ -4,8 +4,7 @@ import ar.edu.unrn.userservice.dto.ClientDTO;
 import ar.edu.unrn.userservice.model.Client;
 
 public interface ClientService {
-
-    ClientDTO update(ClientDTO clientDTO);
+    void update(ClientDTO clientDTO);
 
     ClientDTO getClientById(Long id);
 

@@ -19,14 +19,14 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
     private final JwtConfig jwtConfig;
-
+    private final JwtUtil jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtConfig jwtConfig, UserDetailsServiceImpl userDetailsService) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtConfig jwtConfig, JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService) {
         super(authenticationManager);
         this.jwtConfig = jwtConfig;
+        this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }
 
@@ -35,21 +35,19 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-        // Extraer el token del encabezado de la solicitud
         String header = request.getHeader(jwtConfig.getHeader());
         if (header == null || !header.startsWith(jwtConfig.getTokenPrefix())) {
             chain.doFilter(request, response);
             return;
         }
 
-        // Validar y obtener el usuario desde el token
         String token = header.replace(jwtConfig.getTokenPrefix() + " ", "");
         try {
 
-            Jws<Claims> claims = JwtUtil.getClaims(token);
+            Jws<Claims> claims = jwtUtil.getClaims(token);
             String username = claims.getBody().getSubject();
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);// Obtener el UserDetails según el username
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if (userDetails != null) {
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -59,8 +57,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         } catch (Exception e) {
             throw new RuntimeException();
         }
-
-        // Continuar con la cadena de filtros
         chain.doFilter(request, response);
     }
 }

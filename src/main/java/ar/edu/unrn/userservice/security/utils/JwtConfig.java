@@ -1,14 +1,19 @@
 package ar.edu.unrn.userservice.security.utils;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JwtConfig {
 
-    private String secretKey = "secretKey";
-    private String tokenPrefix = "bearer";
+    @Value("${jwt.secret_key}")
+    private String secretKey;
 
-    private String header = "Authorization";
+    @Value("${jwt.token-prefix}")
+    private String tokenPrefix;
+
+    @Value("${jwt.header}")
+    private String header;
 
     public JwtConfig() {
     }

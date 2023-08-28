@@ -2,7 +2,6 @@ package ar.edu.unrn.userservice.service.impl;
 
 import ar.edu.unrn.userservice.dto.ClientDTO;
 import ar.edu.unrn.userservice.model.Client;
-import ar.edu.unrn.userservice.rabbitmq.Producer;
 import ar.edu.unrn.userservice.repository.ClientRepository;
 import ar.edu.unrn.userservice.service.ClientService;
 import org.modelmapper.ModelMapper;
@@ -10,12 +9,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-
     final
     ClientRepository clientRepository;
 
-    Producer producer = new Producer();
-
+    //Producer producer = new Producer();
     private final ModelMapper modelMapper;
 
 
@@ -25,9 +22,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDTO update(ClientDTO clientDTO) {
-        Client client = clientRepository.save(convertToEntity(clientDTO));
-        return convertToDTO(client);
+    public void update(ClientDTO clientDTO) {
+        Client oldClient = clientRepository.findClientById(Long.valueOf(clientDTO.getId()));
+        Client newClient = convertToEntity(clientDTO);
+        newClient.setUser(oldClient.getUser());
+        clientRepository.save(newClient);
     }
 
     @Override

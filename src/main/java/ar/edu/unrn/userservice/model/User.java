@@ -10,7 +10,6 @@ public class User extends BaseEntity {
     private String username;
     private String password;
     private String email;
-
     private Role role;
 
     public User() {

@@ -4,10 +4,10 @@ import ar.edu.unrn.userservice.model.Client;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,15 +16,16 @@ import java.util.Map;
 public class JwtUtil {
 
     // Genera una clave segura
-    private static final Key SECRET_KEY = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
+    @Value("${jwt.secret_key}")
+    private String secret;
 
-    public static String generateToken(Client client) {
+    public String generateToken(Client client) {
         return Jwts.builder()
                 .setClaims(getClaims(client))
                 .setSubject(client.getUser().getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // Token válido durante 1 hora
-                .signWith(SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
@@ -37,22 +38,7 @@ public class JwtUtil {
         return claims;
     }
 
-    public static boolean validateToken(String token) {
-        try {
-            Jws<Claims> claims = Jwts.parserBuilder()
-                    .setSigningKey(SECRET_KEY)
-                    .build()
-                    .parseClaimsJws(token);
-            return true; // Token válido
-        } catch (Exception e) {
-            return false; // Token inválido
-        }
-    }
-
-    public static Jws<Claims> getClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY)
-                .build()
-                .parseClaimsJws(token);
+    public Jws<Claims> getClaims(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
     }
 }

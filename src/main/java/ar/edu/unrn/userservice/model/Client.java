@@ -11,7 +11,6 @@ public class Client extends BaseEntity implements java.io.Serializable {
     private String lastname;
     private String documentType;
     private String documentNumber;
-
     private LocalDate dateOfBirth;
     private User user;
 
@@ -54,7 +53,6 @@ public class Client extends BaseEntity implements java.io.Serializable {
     public void setDocumentType(String document_type) {
         this.documentType = document_type;
     }
-
 
     @Column(name = "document_number")
     public String getDocumentNumber() {

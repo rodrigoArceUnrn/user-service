@@ -27,12 +27,12 @@ public class ClientController {
     }
 
     @PutMapping()
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> updateClient(@RequestBody ClientDTO clientDTO) {
         try {
-            ClientDTO result = clientService.update(clientDTO);
-
-            rabbitService.sendClientUpdateMessage(result);
-            return ResponseEntity.ok().body(result);
+            clientService.update(clientDTO);
+            //rabbitService.sendClientUpdateMessage(result);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -42,6 +42,5 @@ public class ClientController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getClient(@PathVariable Long id) {
         return ResponseEntity.ok().body(clientService.getClientById(id));
-
     }
 }

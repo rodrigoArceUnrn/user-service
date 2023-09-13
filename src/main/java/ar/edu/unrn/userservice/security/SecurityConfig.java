@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/clients/**").hasRole("ADMIN")
+                                .antMatchers("/clients/**").hasRole("CLIENTE")
                                 .antMatchers("/swagger-ui/**").permitAll()
                                 .antMatchers("/v3/**").permitAll()
                                 .antMatchers("/users/login").permitAll()

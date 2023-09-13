@@ -27,7 +27,7 @@ public class ClientController {
     }
 
     @PutMapping()
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<?> updateClient(@RequestBody ClientDTO clientDTO) {
         try {
             clientService.update(clientDTO);
@@ -39,7 +39,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<?> getClient(@PathVariable Long id) {
         return ResponseEntity.ok().body(clientService.getClientById(id));
     }

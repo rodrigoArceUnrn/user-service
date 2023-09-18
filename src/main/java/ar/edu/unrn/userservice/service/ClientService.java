@@ -1,13 +1,15 @@
 package ar.edu.unrn.userservice.service;
 
-import ar.edu.unrn.userservice.dto.ClientDTO;
+import ar.edu.unrn.userservice.dto.ClientDto;
 import ar.edu.unrn.userservice.model.Client;
 
+/**
+ * ClientService.
+ */
 public interface ClientService {
-    void update(ClientDTO clientDTO);
+  void update(ClientDto clientDto);
 
-    ClientDTO getClientById(Long id);
+  ClientDto getClientById(Long id);
 
-    Client getClientByUserId(Long id);
-
+  Client getClientByUserId(Long id);
 }

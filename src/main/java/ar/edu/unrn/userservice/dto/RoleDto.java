@@ -3,11 +3,11 @@ package ar.edu.unrn.userservice.dto;
 import lombok.Data;
 
 /**
- * ClientMessage.
+ * RoleDto.
  */
 @Data
-public class ClientMessage {
+public class RoleDto {
 
-  private Long id;
   private String name;
+  private String description;
 }

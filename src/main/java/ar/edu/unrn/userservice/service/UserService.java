@@ -1,12 +1,15 @@
 package ar.edu.unrn.userservice.service;
 
-import ar.edu.unrn.userservice.dto.AuthRequestDTO;
-import ar.edu.unrn.userservice.dto.AuthResponseDTO;
+import ar.edu.unrn.userservice.dto.AuthRequestDto;
+import ar.edu.unrn.userservice.dto.AuthResponseDto;
 import ar.edu.unrn.userservice.model.User;
 
+/**
+ * UserService.
+ */
 public interface UserService {
 
-    User findByUsername(String username);
+  User findByUsername(String username);
 
-    AuthResponseDTO autenticate(AuthRequestDTO authRequest) throws Exception;
+  AuthResponseDto autenticate(AuthRequestDto authRequest) throws Exception;
 }

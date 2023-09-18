@@ -1,52 +1,58 @@
 package ar.edu.unrn.userservice.service.impl;
 
-import ar.edu.unrn.userservice.dto.ClientDTO;
+import ar.edu.unrn.userservice.dto.ClientDto;
 import ar.edu.unrn.userservice.model.Client;
 import ar.edu.unrn.userservice.repository.ClientRepository;
 import ar.edu.unrn.userservice.service.ClientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+/**
+ * ClientServiceImpl.
+ */
 @Service
 public class ClientServiceImpl implements ClientService {
-    final
-    ClientRepository clientRepository;
+  final ClientRepository clientRepository;
 
-    //Producer producer = new Producer();
-    private final ModelMapper modelMapper;
+  final RabbitService rabbitService;
 
+  private final ModelMapper modelMapper;
 
-    public ClientServiceImpl(ClientRepository clientRepository, ModelMapper modelMapper) {
-        this.clientRepository = clientRepository;
-        this.modelMapper = modelMapper;
-    }
+  /**
+   * ClientServiceImpl.
+  */
+  public ClientServiceImpl(ClientRepository clientRepository,
+                           RabbitService rabbitService, ModelMapper modelMapper) {
+    this.clientRepository = clientRepository;
+    this.rabbitService = rabbitService;
+    this.modelMapper = modelMapper;
+  }
 
-    @Override
-    public void update(ClientDTO clientDTO) {
-        Client oldClient = clientRepository.findClientById(Long.valueOf(clientDTO.getId()));
-        Client newClient = convertToEntity(clientDTO);
-        newClient.setUser(oldClient.getUser());
-        clientRepository.save(newClient);
-    }
+  @Override
+  public void update(ClientDto clientDto) {
+    Client oldClient = clientRepository.findClientById(Long.valueOf(clientDto.getId()));
+    Client newClient = convertToEntity(clientDto);
+    newClient.setUser(oldClient.getUser());
+    Client result = clientRepository.save(newClient);
+    rabbitService.sendClientUpdateMessage(convertToDto(result));
+  }
 
-    @Override
-    public ClientDTO getClientById(Long id) {
-        Client client = clientRepository.findClientById(id);
-        return convertToDTO(client);
-    }
+  @Override
+  public ClientDto getClientById(Long id) {
+    Client client = clientRepository.findClientById(id);
+    return convertToDto(client);
+  }
 
-    @Override
-    public Client getClientByUserId(Long id) {
-        return clientRepository.findClientByUserId(id);
-    }
+  @Override
+  public Client getClientByUserId(Long id) {
+    return clientRepository.findClientByUserId(id);
+  }
 
-    private Client convertToEntity(ClientDTO clientDTO) {
-        return modelMapper.map(clientDTO, Client.class);
-    }
+  private Client convertToEntity(ClientDto clientDto) {
+    return modelMapper.map(clientDto, Client.class);
+  }
 
-    private ClientDTO convertToDTO(Client client) {
-        return modelMapper.map(client, ClientDTO.class);
-    }
-
-
+  private ClientDto convertToDto(Client client) {
+    return modelMapper.map(client, ClientDto.class);
+  }
 }

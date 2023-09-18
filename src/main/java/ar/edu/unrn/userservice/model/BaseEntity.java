@@ -1,23 +1,32 @@
 package ar.edu.unrn.userservice.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
 
+import java.io.Serial;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+/**
+ * BaseEntity.
+ */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    protected Long id;
+  @Serial
+  private static final long serialVersionUID = 1L;
+  protected Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    public Long getId() {
-        return id;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", unique = true, nullable = false)
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+  public void setId(Long id) {
+    this.id = id;
+  }
 }

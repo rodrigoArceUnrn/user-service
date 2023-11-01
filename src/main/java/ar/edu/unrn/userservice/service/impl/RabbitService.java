@@ -16,6 +16,9 @@ public class RabbitService {
   @Autowired
   private Producer producer;
 
+  public RabbitService() {
+  }
+
   public void sendClientUpdateMessage(ClientDto result) {
     log.info("Message '{}' will be send ...", result.toJsonString());
     this.producer.send(result.toJsonString());

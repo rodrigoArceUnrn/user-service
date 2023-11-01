@@ -14,8 +14,13 @@ public class ProducerConfig {
   @Value("${rabbit.queue.name}")
   private String message;
 
+  public ProducerConfig() {
+  }
+
   @Bean
   public Queue queue() {
     return new Queue(message, true);
   }
+
+
 }

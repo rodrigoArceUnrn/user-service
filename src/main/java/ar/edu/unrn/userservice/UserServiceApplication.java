@@ -13,6 +13,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "ar.edu.unrn")
 public class UserServiceApplication {
 
+  public UserServiceApplication() {
+  }
+
   public static void main(String[] args) {
     SpringApplication.run(UserServiceApplication.class, args);
   }

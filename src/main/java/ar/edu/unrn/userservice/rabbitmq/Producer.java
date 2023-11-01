@@ -19,6 +19,9 @@ public class Producer {
   @Autowired
   private Queue queue;
 
+  public Producer() {
+  }
+
   public void send(String message) {
     rabbitTemplate.convertAndSend(queue.getName(), message);
   }

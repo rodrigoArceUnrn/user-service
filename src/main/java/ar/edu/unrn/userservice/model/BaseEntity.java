@@ -15,6 +15,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
+  public BaseEntity() {
+  }
+
   @Serial
   private static final long serialVersionUID = 1L;
   protected Long id;

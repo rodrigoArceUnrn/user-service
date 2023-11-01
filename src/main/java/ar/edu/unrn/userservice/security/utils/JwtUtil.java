@@ -21,6 +21,9 @@ public class JwtUtil {
   @Value("${jwt.secret_key}")
   private String secret;
 
+  public JwtUtil() {
+  }
+
   /**
    *GenerateToken.
   */

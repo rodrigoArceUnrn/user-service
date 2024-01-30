@@ -9,6 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: store_users
+        ports:
+          - 3306:3306
     
     steps:
     - name: Checkout repository

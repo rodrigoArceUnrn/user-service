@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -39,7 +40,7 @@ public class ClientControllerTest {
     public void testUserControllerSuccess() throws Exception {
         mockMvc.perform(get("/clients/1")
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
@@ -61,18 +62,18 @@ public class ClientControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
-    public void testUpdateClientSuccess() throws Exception {
-        ClientDto clientDto = new ClientDto("1", "Pepo-ito", "Arce", "DNI", "38083954", null);
+        @Test
+        public void testUpdateClientSuccess() throws Exception {
+            ClientDto clientDto = new ClientDto("1", "Pepo-ito", "Arce", "DNI", "38083954", null);
 
-        doNothing().when(clientService).update(clientDto);
+            doNothing().when(clientService).update(clientDto);
 
-        mockMvc.perform(put("/clients")
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(clientDto)))
-                .andExpect(status().is4xxClientError());
-    }
+            mockMvc.perform(put("/clients")
+                            .header(HttpHeaders.AUTHORIZATION, "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(asJsonString(clientDto)))
+                    .andExpect(status().is2xxSuccessful());
+        }
 
     private static String asJsonString(final Object obj) {
         try {

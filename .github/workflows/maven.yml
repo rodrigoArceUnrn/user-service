@@ -30,5 +30,14 @@ jobs:
 
     - name: Build with Maven and Checkstyle
       run: mvn -B verify checkstyle:checkstyle -Dcheckstyle.config.location=google_checks.xml
-    - name: Run tests
+    - name: Run tests and capture results
       run: mvn test
+      continue-on-error: true
+      env:
+        TEST_REPORT_DIR: ${{ github.workspace }}/target/surefire-reports
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: ${{ env.TEST_REPORT_DIR }}

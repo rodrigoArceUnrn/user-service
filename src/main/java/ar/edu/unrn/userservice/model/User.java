@@ -22,6 +22,23 @@ public class User extends BaseEntity {
   public User() {
   }
 
+  /**
+   * Crea un nuevo usuario con la información proporcionada.
+   *
+   * @param id el identificador único del usuario
+   * @param username el nombre de usuario del usuario
+   * @param password la contraseña del usuario
+   * @param mail el correo electrónico del usuario
+   * @param role el rol del usuario
+   */
+  public User(Long id, String username, String password, String mail, Role role) {
+    super.id = id;
+    this.username = username;
+    this.password = password;
+    this.email = mail;
+    this.role = role;
+  }
+
   public String getUsername() {
     return username;
   }

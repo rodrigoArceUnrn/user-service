@@ -15,8 +15,8 @@ import java.util.Base64;
 
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -31,52 +31,49 @@ public class ClientControllerTest {
 
     @Test
     public void testUserControllerFailed() throws Exception {
-        mockMvc.perform(get("/clients/1")) // Ruta del controlador que quieres probar
-                .andExpect(status().is4xxClientError()); // Verifica que la respuesta sea OK (código HTTP 200)
+        mockMvc.perform(get("/clients/1"))
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
     public void testUserControllerSuccess() throws Exception {
-        mockMvc.perform(get("/clients/1") // Ruta del controlador que quieres probar
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))) // Agregar usuario y contraseña aquí
-                .andExpect(status().is2xxSuccessful()); // Verifica que la respuesta sea OK (código HTTP 200)
+        mockMvc.perform(get("/clients/1")
+                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())))
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
     public void testUpdateClientUserUnauthorized() throws Exception {
-        // Simula un objeto ClientDto
-        ClientDto clientDto = new ClientDto("3", "Pepo-ito", "Arce", "DNI", "38083954", null);
+        ClientDto clientDto = new ClientDto();
+        clientDto.setId("3");
+        clientDto.setName("Pepo-ito");
+        clientDto.setLastname("Arce");
+        clientDto.setDocumentType("DNI");
+        clientDto.setDocumentNumber("38083954");
+        clientDto.setDateOfBirth(null);
 
-        // Configura el comportamiento del servicio mock clientService
         doThrow(new RuntimeException("Error de servicio")).when(clientService).update(clientDto);
 
-        // Realiza una solicitud PUT simulada al controlador con el objeto ClientDto
         mockMvc.perform(put("/clients")
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())) // Agregar usuario y contraseña aquí
+                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(clientDto))) // Establece el contenido del cuerpo de la solicitud
-                .andExpect(status().isNotFound());// Verifica que se devuelve una respuesta HTTP 200
+                        .content(asJsonString(clientDto)))
+                .andExpect(status().isNotFound());
     }
 
     @Test
     public void testUpdateClientSuccess() throws Exception {
-        // Simula un objeto ClientDto
         ClientDto clientDto = new ClientDto("1", "Pepo-ito", "Arce", "DNI", "38083954", null);
 
-        // Configura el comportamiento del servicio mock clientService
         doNothing().when(clientService).update(clientDto);
 
-        // Realiza una solicitud PUT simulada al controlador con el objeto ClientDto
         mockMvc.perform(put("/clients")
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())) // Agregar usuario y contraseña aquí
-                .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(clientDto))) // Establece el contenido del cuerpo de la solicitud
-                .andExpect(status().is2xxSuccessful()); // Verifica que se devuelve una respuesta HTTP 200
+                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(clientDto)))
+                .andExpect(status().is2xxSuccessful());
     }
 
-
-
-    // Método para convertir un objeto a una cadena JSON
     private static String asJsonString(final Object obj) {
         try {
             final ObjectMapper objectMapper = new ObjectMapper();

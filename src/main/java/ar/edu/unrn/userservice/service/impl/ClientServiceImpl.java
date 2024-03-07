@@ -31,10 +31,10 @@ public class ClientServiceImpl implements ClientService {
   @Override
   public void update(ClientDto clientDto) {
     Client oldClient = clientRepository.findClientById(Long.valueOf(clientDto.getId()));
-    Client newClient = convertToEntity(clientDto);
+    Client newClient = modelMapper.map(clientDto, Client.class);
     newClient.setUser(oldClient.getUser());
     Client result = clientRepository.save(newClient);
-    rabbitService.sendClientUpdateMessage(convertToDto(result));
+    rabbitService.sendClientUpdateMessage(modelMapper.map(result, ClientDto.class));
   }
 
   @Override

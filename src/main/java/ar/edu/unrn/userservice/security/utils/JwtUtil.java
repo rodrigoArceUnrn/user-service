@@ -49,4 +49,12 @@ public class JwtUtil {
   public Jws<Claims> getClaims(String token) {
     return Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
   }
+
+  public String getSecret() {
+    return secret;
+  }
+
+  public void setSecret(String secret) {
+    this.secret = secret;
+  }
 }

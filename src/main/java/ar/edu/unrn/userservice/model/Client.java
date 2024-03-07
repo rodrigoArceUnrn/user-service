@@ -25,6 +25,28 @@ public class Client extends BaseEntity implements java.io.Serializable {
   public Client() {
   }
 
+  /**
+   * Crea un nuevo cliente con la información proporcionada.
+   *
+   * @param id el identificador único del cliente
+   * @param name el nombre del cliente
+   * @param lastname el apellido del cliente
+   * @param documentType el tipo de documento del cliente
+   * @param documentNumber el número de documento del cliente
+   * @param dateOfBirth la fecha de nacimiento del cliente
+   * @param user el usuario asociado al cliente
+   */
+  public Client(Long id, String name, String lastname, String documentType,
+                String documentNumber, LocalDate dateOfBirth, User user) {
+    super.id = id;
+    this.name = name;
+    this.lastname = lastname;
+    this.documentType = documentType;
+    this.documentNumber = documentNumber;
+    this.dateOfBirth = dateOfBirth;
+    this.user = user;
+  }
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   public User getUser() {

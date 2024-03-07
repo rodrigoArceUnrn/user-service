@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RabbitService {
 
-  @Autowired
-  private Producer producer;
+  private final Producer producer;
 
-  public RabbitService() {
+  public RabbitService(Producer producer) {
+    this.producer = producer;
   }
 
   public void sendClientUpdateMessage(ClientDto result) {

@@ -22,6 +22,11 @@ public class Producer {
   public Producer() {
   }
 
+  public Producer(RabbitTemplate rabbitTemplate, Queue queue) {
+    this.rabbitTemplate = rabbitTemplate;
+    this.queue = queue;
+  }
+
   public void send(String message) {
     rabbitTemplate.convertAndSend(queue.getName(), message);
   }

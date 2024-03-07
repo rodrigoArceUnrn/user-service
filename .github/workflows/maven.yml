@@ -20,8 +20,14 @@ jobs:
           MYSQL_PASSWORD: root
         ports:
           - 3306:3306
-    
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
+    - name: Wait for MySQL to be ready
+      run: |
+          dockerize -wait tcp://localhost:3306 -timeout 1m
+      continue-on-error: true
+
     - name: Checkout repository
       uses: actions/checkout@v2
       

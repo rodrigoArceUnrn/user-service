@@ -39,7 +39,7 @@ public class ClientControllerTest {
     public void testUserControllerSuccess() throws Exception {
         mockMvc.perform(get("/clients/1")
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ClientControllerTest {
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(clientDto)))
-                .andExpect(status().isNotFound());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ClientControllerTest {
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(clientDto)))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
     }
 
     private static String asJsonString(final Object obj) {

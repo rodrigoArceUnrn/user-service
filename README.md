@@ -1,7 +1,5 @@
-[![codecov](https://codecov.io/gh/rodrigoArceUnrn/user-service/graph/badge.svg?token=RHN82TL6MX)](https://codecov.io/gh/rodrigoArceUnrn/user-service)
+[![Tests](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml/badge.svg)](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/rodrigoArceUnrn/user-service/graph/badge.svg?token=RHN82TL6MX)](https://codecov.io/gh/rodrigoArceUnrn/user-service)
 
 
-<a href="https://codecov.io/gh/rodrigoArceUnrn/user-service" > 
- <img src="https://codecov.io/gh/rodrigoArceUnrn/user-service/graph/badge.svg?token=RHN82TL6MX"/> 
- </a>
-User Service.
+
+MICROSERVICIO DE USUARIO.

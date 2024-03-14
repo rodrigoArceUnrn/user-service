@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.*;
 
-
+@SpringBootTest
 public class ClientServiceTest {
     private ClientRepository clientRepository;
     private ClientService clientService;
@@ -26,8 +26,6 @@ public class ClientServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
-
         clientRepository = mock(ClientRepository.class);
         rabbitService = mock(RabbitService.class);
         modelMapper = new ModelMapper();

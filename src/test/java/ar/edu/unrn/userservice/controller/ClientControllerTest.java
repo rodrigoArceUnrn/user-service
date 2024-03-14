@@ -8,7 +8,6 @@ import ar.edu.unrn.userservice.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,11 +20,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.webjars.NotFoundException;
 
 import java.util.Base64;
 
@@ -41,7 +37,7 @@ public class ClientControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @MockBean
     private ClientService clientService;
@@ -49,8 +45,6 @@ public class ClientControllerTest {
     @MockBean
     private AuthenticationManager authenticationManager;
 
-    @InjectMocks
-    private ClientController clientController;
     @MockBean
     private UserDetailsServiceImpl userDetailsService;
 
@@ -109,20 +103,12 @@ public class ClientControllerTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // Realizar la solicitud GET con la autenticación básica
-        MvcResult result = mockMvc.perform(get("/clients/1")
+        mockMvc.perform(get("/clients/1")
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())))
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
     }
-
-
-   /* @Test
-    public void testUserControllerSuccess() throws Exception {
-        mockMvc.perform(get("/clients/1")
-                        .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes())))
-                .andExpect(status().is2xxSuccessful());
-    }*/
 
     @Test
     public void testUserControllerSuccess() throws Exception {
@@ -149,19 +135,6 @@ public class ClientControllerTest {
                         .content(asJsonString(clientDto)))
                 .andExpect(status().is4xxClientError());
     }
-
-        /*@Test
-        public void testUpdateClientSuccess() throws Exception {
-            ClientDto clientDto = new ClientDto("1", "Pepo-ito", "Arce", "DNI", "38083954", null);
-
-            doNothing().when(clientService).update(clientDto);
-
-            mockMvc.perform(put("/clients")
-                            .header(HttpHeaders.AUTHORIZATION, "Basic " + Base64.getEncoder().encodeToString("rodrigoa:Rodri123".getBytes()))
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(asJsonString(clientDto)))
-                    .andExpect(status().is2xxSuccessful());
-        }*/
 
     @Test
     public void testUpdateClientSuccess() throws Exception {

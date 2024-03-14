@@ -2,9 +2,9 @@ package ar.edu.unrn.userservice.security.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.assertEquals;
-
+@SpringBootTest
 public class JwtConfigTest {
 
     @Test
@@ -41,5 +41,4 @@ public class JwtConfigTest {
         jwtConfig.setHeader(header);
         Assertions.assertEquals(header, jwtConfig.getHeader());
     }
-
 }

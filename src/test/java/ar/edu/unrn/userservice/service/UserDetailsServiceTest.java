@@ -1,18 +1,21 @@
 package ar.edu.unrn.userservice.service;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
 
 import ar.edu.unrn.userservice.model.User;
 import ar.edu.unrn.userservice.repository.UserRepository;
 import ar.edu.unrn.userservice.security.service.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Optional;
+
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
 public class UserDetailsServiceTest {
 
     @Test

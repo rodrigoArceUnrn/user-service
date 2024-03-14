@@ -2,43 +2,27 @@ package ar.edu.unrn.userservice.service;
 
 import ar.edu.unrn.userservice.dto.ClientDto;
 import ar.edu.unrn.userservice.rabbitmq.Producer;
-import ar.edu.unrn.userservice.repository.ClientRepository;
 import ar.edu.unrn.userservice.service.impl.RabbitService;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.modelmapper.ModelMapper;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-
+@SpringBootTest
 public class RabbitServiceTest {
 
-    private ClientRepository clientRepository;
-    private RabbitService rabbitService;
-    private ModelMapper modelMapper;
-    private Queue queue;
     @Mock
     private Producer producer;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-
-        clientRepository = mock(ClientRepository.class);
-        rabbitService = mock(RabbitService.class);
-        modelMapper = new ModelMapper();
-    }
 
     @Test
     public void queueTest() {
         RabbitTemplate rabbitTemplate = mock(RabbitTemplate.class);
 
-        queue = mock(Queue.class);
+        Queue queue = mock(Queue.class);
         when(queue.getName()).thenReturn("testQueue");
 
         producer = new Producer(rabbitTemplate, queue);

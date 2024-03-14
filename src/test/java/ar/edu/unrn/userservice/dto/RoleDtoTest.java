@@ -2,12 +2,13 @@ package ar.edu.unrn.userservice.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@SpringBootTest
 public class RoleDtoTest {
 
     @Test
@@ -28,16 +29,16 @@ public class RoleDtoTest {
         assertThat(roleDto.getName()).isEqualTo("rol_cliente");
 
         //Reflexividad
-        assertTrue(roleDto.equals(roleDto));
+        assertEquals(roleDto, roleDto);
 
         //Simetría
-        assertTrue(roleDto.equals(roleDto1));
-        assertTrue(roleDto1.equals(roleDto));
+        assertEquals(roleDto, roleDto1);
+        assertEquals(roleDto1, roleDto);
 
         //Transitividad
-        assertTrue(roleDto.equals(roleDto1));
-        assertTrue(roleDto1.equals(roleDto2));
-        assertTrue(roleDto.equals(roleDto2));
+        assertEquals(roleDto, roleDto1);
+        assertEquals(roleDto1, roleDto2);
+        assertEquals(roleDto, roleDto2);
 
         //consistencia
         Assertions.assertEquals(roleDto.equals(roleDto1), roleDto.equals(roleDto1));

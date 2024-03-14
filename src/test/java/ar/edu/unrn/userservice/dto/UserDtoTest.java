@@ -2,12 +2,13 @@ package ar.edu.unrn.userservice.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@SpringBootTest
 public class UserDtoTest {
 
     @Test
@@ -50,16 +51,16 @@ public class UserDtoTest {
         assertThat(userDto.getUsername().equals("rarce")).isEqualTo(true);
 
         //Reflexividad
-        assertTrue(userDto.equals(userDto));
+        assertEquals(userDto, userDto);
 
         //Simetría
-        assertTrue(userDto.equals(userDto1));
-        assertTrue(userDto1.equals(userDto));
+        assertEquals(userDto, userDto1);
+        assertEquals(userDto1, userDto);
 
         //Transitividad
-        assertTrue(userDto.equals(userDto1));
-        assertTrue(userDto1.equals(userDto2));
-        assertTrue(userDto.equals(userDto2));
+        assertEquals(userDto, userDto1);
+        assertEquals(userDto1, userDto2);
+        assertEquals(userDto, userDto2);
 
         //consistencia
         Assertions.assertEquals(userDto.equals(userDto1), userDto.equals(userDto1));

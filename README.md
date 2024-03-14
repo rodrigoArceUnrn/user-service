@@ -1,4 +1,4 @@
-[![Tests](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml/badge.svg?event=push)](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/rodrigoArceUnrn/user-service/graph/badge.svg?token=RHN82TL6MX)](https://codecov.io/gh/rodrigoArceUnrn/user-service)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/93a1656140dc4b741622/test_coverage)](https://codeclimate.com/github/rodrigoArceUnrn/user-service/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/93a1656140dc4b741622/maintainability)](https://codeclimate.com/github/rodrigoArceUnrn/user-service/maintainability) [![Tests](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml/badge.svg?event=push)](https://github.com/rodrigoArceUnrn/user-service/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/rodrigoArceUnrn/user-service/graph/badge.svg?token=RHN82TL6MX)](https://codecov.io/gh/rodrigoArceUnrn/user-service)
 
 # User Service
 

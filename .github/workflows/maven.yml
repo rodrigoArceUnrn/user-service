@@ -56,4 +56,10 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         slug: rodrigoArceUnrn/user-service
+        
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v5.0.0
+      env:
+        CC_TEST_REPORTER_ID: e0b5f1a11667eb6fe570971a9cf252039ffd85e3738e37a71b0f4548b50d67b5
+    
 

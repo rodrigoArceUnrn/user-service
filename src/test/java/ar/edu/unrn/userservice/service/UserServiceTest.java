@@ -1,16 +1,18 @@
 package ar.edu.unrn.userservice.service;
 
-import ar.edu.unrn.userservice.dto.AuthRequestDto;
-import ar.edu.unrn.userservice.dto.AuthResponseDto;
+import ar.edu.unrn.userservice.domain.service.ClientService;
+import ar.edu.unrn.userservice.domain.service.UserService;
+import ar.edu.unrn.userservice.controller.dto.AuthRequestDto;
+import ar.edu.unrn.userservice.controller.dto.AuthResponseDto;
 import ar.edu.unrn.userservice.model.Client;
 import ar.edu.unrn.userservice.model.Role;
 import ar.edu.unrn.userservice.model.User;
-import ar.edu.unrn.userservice.repository.ClientRepository;
-import ar.edu.unrn.userservice.repository.UserRepository;
-import ar.edu.unrn.userservice.security.utils.JwtUtil;
-import ar.edu.unrn.userservice.service.impl.ClientServiceImpl;
-import ar.edu.unrn.userservice.service.impl.RabbitService;
-import ar.edu.unrn.userservice.service.impl.UserServiceImpl;
+import ar.edu.unrn.userservice.data.repository.ClientRepository;
+import ar.edu.unrn.userservice.data.repository.UserRepository;
+import ar.edu.unrn.userservice.domain.security.utils.JwtUtil;
+import ar.edu.unrn.userservice.domain.impl.ClientServiceImpl;
+import ar.edu.unrn.userservice.domain.impl.RabbitService;
+import ar.edu.unrn.userservice.domain.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;

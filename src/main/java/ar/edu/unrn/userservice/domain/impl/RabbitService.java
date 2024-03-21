@@ -1,9 +1,8 @@
-package ar.edu.unrn.userservice.service.impl;
+package ar.edu.unrn.userservice.domain.impl;
 
-import ar.edu.unrn.userservice.dto.ClientDto;
-import ar.edu.unrn.userservice.rabbitmq.Producer;
+import ar.edu.unrn.userservice.controller.dto.ClientDto;
+import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

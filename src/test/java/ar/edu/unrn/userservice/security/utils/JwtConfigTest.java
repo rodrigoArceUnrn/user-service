@@ -1,5 +1,6 @@
 package ar.edu.unrn.userservice.security.utils;
 
+import ar.edu.unrn.userservice.domain.security.utils.JwtConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

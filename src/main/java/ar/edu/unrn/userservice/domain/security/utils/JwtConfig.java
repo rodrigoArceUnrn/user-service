@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.security.utils;
+package ar.edu.unrn.userservice.domain.security.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

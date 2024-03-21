@@ -1,9 +1,9 @@
-package ar.edu.unrn.userservice.service.impl;
+package ar.edu.unrn.userservice.domain.impl;
 
-import ar.edu.unrn.userservice.dto.ClientDto;
+import ar.edu.unrn.userservice.controller.dto.ClientDto;
 import ar.edu.unrn.userservice.model.Client;
-import ar.edu.unrn.userservice.repository.ClientRepository;
-import ar.edu.unrn.userservice.service.ClientService;
+import ar.edu.unrn.userservice.data.repository.ClientRepository;
+import ar.edu.unrn.userservice.domain.service.ClientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.repository;
+package ar.edu.unrn.userservice.data.repository;
 
 import ar.edu.unrn.userservice.model.User;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.security.service;
+package ar.edu.unrn.userservice.domain.security.service;
 
 import ar.edu.unrn.userservice.model.User;
 import java.util.Collection;

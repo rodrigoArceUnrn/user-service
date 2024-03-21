@@ -1,6 +1,6 @@
 package ar.edu.unrn.userservice.service;
 
-import ar.edu.unrn.userservice.rabbitmq.Producer;
+import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.Queue;

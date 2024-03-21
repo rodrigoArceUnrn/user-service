@@ -1,8 +1,8 @@
 package ar.edu.unrn.userservice.service;
 
-import ar.edu.unrn.userservice.dto.ClientDto;
-import ar.edu.unrn.userservice.rabbitmq.Producer;
-import ar.edu.unrn.userservice.service.impl.RabbitService;
+import ar.edu.unrn.userservice.controller.dto.ClientDto;
+import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
+import ar.edu.unrn.userservice.domain.impl.RabbitService;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.amqp.core.Queue;

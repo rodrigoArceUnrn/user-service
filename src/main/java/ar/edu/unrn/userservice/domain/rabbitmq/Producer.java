@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.rabbitmq;
+package ar.edu.unrn.userservice.domain.rabbitmq;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;

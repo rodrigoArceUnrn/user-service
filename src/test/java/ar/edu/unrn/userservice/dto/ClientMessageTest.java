@@ -1,5 +1,6 @@
 package ar.edu.unrn.userservice.dto;
 
+import ar.edu.unrn.userservice.controller.dto.ClientMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

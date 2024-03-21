@@ -1,7 +1,7 @@
-package ar.edu.unrn.userservice.service;
+package ar.edu.unrn.userservice.domain.service;
 
-import ar.edu.unrn.userservice.dto.AuthRequestDto;
-import ar.edu.unrn.userservice.dto.AuthResponseDto;
+import ar.edu.unrn.userservice.controller.dto.AuthRequestDto;
+import ar.edu.unrn.userservice.controller.dto.AuthResponseDto;
 import ar.edu.unrn.userservice.model.User;
 
 /**

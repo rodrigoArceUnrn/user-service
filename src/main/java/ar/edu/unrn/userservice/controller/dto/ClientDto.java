@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.dto;
+package ar.edu.unrn.userservice.controller.dto;
 
 import com.google.gson.Gson;
 import lombok.Data;
@@ -15,7 +15,7 @@ public class ClientDto {
   private String documentType;
   private String documentNumber;
   private String dateOfBirth;
-  private UserDto userDto;
+  private UserDto user;
 
   /**
    * Crea un nuevo cliente con la información proporcionada.

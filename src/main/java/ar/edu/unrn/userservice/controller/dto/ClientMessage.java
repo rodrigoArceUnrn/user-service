@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.dto;
+package ar.edu.unrn.userservice.controller.dto;
 
 import lombok.Data;
 

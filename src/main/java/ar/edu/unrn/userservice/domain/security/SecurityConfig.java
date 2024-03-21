@@ -1,9 +1,9 @@
-package ar.edu.unrn.userservice.security;
+package ar.edu.unrn.userservice.domain.security;
 
-import ar.edu.unrn.userservice.security.service.UserDetailsServiceImpl;
-import ar.edu.unrn.userservice.security.utils.JwtAuthenticationFilter;
-import ar.edu.unrn.userservice.security.utils.JwtConfig;
-import ar.edu.unrn.userservice.security.utils.JwtUtil;
+import ar.edu.unrn.userservice.domain.security.service.UserDetailsServiceImpl;
+import ar.edu.unrn.userservice.domain.security.utils.JwtAuthenticationFilter;
+import ar.edu.unrn.userservice.domain.security.utils.JwtConfig;
+import ar.edu.unrn.userservice.domain.security.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

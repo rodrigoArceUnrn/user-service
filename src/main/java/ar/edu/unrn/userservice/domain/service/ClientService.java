@@ -1,6 +1,6 @@
-package ar.edu.unrn.userservice.service;
+package ar.edu.unrn.userservice.domain.service;
 
-import ar.edu.unrn.userservice.dto.ClientDto;
+import ar.edu.unrn.userservice.controller.dto.ClientDto;
 import ar.edu.unrn.userservice.model.Client;
 
 /**

@@ -1,7 +1,7 @@
 package ar.edu.unrn.userservice.controller;
 
-import ar.edu.unrn.userservice.dto.ClientDto;
-import ar.edu.unrn.userservice.service.ClientService;
+import ar.edu.unrn.userservice.controller.dto.ClientDto;
+import ar.edu.unrn.userservice.domain.service.ClientService;
 import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
-package ar.edu.unrn.userservice.security.utils;
+package ar.edu.unrn.userservice.domain.security.utils;
 
-import ar.edu.unrn.userservice.security.service.UserDetailsServiceImpl;
+import ar.edu.unrn.userservice.domain.security.service.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import java.io.IOException;

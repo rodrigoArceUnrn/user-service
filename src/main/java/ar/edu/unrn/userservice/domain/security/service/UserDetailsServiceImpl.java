@@ -1,7 +1,7 @@
-package ar.edu.unrn.userservice.security.service;
+package ar.edu.unrn.userservice.domain.security.service;
 
 import ar.edu.unrn.userservice.model.User;
-import ar.edu.unrn.userservice.repository.UserRepository;
+import ar.edu.unrn.userservice.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

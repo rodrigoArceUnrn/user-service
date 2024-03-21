@@ -1,7 +1,7 @@
 package ar.edu.unrn.userservice.controller;
 
-import ar.edu.unrn.userservice.dto.AuthRequestDto;
-import ar.edu.unrn.userservice.service.UserService;
+import ar.edu.unrn.userservice.controller.dto.AuthRequestDto;
+import ar.edu.unrn.userservice.domain.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;

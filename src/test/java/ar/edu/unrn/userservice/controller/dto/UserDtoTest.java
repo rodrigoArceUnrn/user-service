@@ -1,7 +1,5 @@
 package ar.edu.unrn.userservice.controller.dto;
 
-import ar.edu.unrn.userservice.controller.dto.RoleDto;
-import ar.edu.unrn.userservice.controller.dto.UserDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

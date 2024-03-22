@@ -1,7 +1,6 @@
 package ar.edu.unrn.userservice.domain.rabbitmq;
 
 import ar.edu.unrn.userservice.controller.dto.ClientDto;
-import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
 import ar.edu.unrn.userservice.domain.impl.RabbitService;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -1,6 +1,5 @@
 package ar.edu.unrn.userservice.domain.security.utils;
 
-import ar.edu.unrn.userservice.domain.security.utils.JwtUtil;
 import ar.edu.unrn.userservice.model.Client;
 import ar.edu.unrn.userservice.model.Role;
 import ar.edu.unrn.userservice.model.User;

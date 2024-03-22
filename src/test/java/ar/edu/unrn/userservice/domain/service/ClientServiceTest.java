@@ -1,12 +1,11 @@
 package ar.edu.unrn.userservice.domain.service;
 
-import ar.edu.unrn.userservice.domain.service.ClientService;
 import ar.edu.unrn.userservice.controller.dto.ClientDto;
-import ar.edu.unrn.userservice.model.Client;
-import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
 import ar.edu.unrn.userservice.data.repository.ClientRepository;
 import ar.edu.unrn.userservice.domain.impl.ClientServiceImpl;
 import ar.edu.unrn.userservice.domain.impl.RabbitService;
+import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
+import ar.edu.unrn.userservice.model.Client;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

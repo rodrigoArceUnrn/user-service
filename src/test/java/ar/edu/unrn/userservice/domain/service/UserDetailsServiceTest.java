@@ -1,8 +1,8 @@
 package ar.edu.unrn.userservice.domain.service;
 
-import ar.edu.unrn.userservice.model.User;
 import ar.edu.unrn.userservice.data.repository.UserRepository;
 import ar.edu.unrn.userservice.domain.security.service.UserDetailsServiceImpl;
+import ar.edu.unrn.userservice.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

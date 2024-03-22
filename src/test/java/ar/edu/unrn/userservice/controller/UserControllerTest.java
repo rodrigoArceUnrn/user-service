@@ -1,8 +1,8 @@
 package ar.edu.unrn.userservice.controller;
 
-import ar.edu.unrn.userservice.controller.dto.AuthRequestDto;
-import ar.edu.unrn.userservice.controller.dto.AuthResponseDto;
-import ar.edu.unrn.userservice.domain.service.UserService;
+import ar.edu.unrn.userservice.dto.AuthRequestDto;
+import ar.edu.unrn.userservice.dto.AuthResponseDto;
+import ar.edu.unrn.userservice.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

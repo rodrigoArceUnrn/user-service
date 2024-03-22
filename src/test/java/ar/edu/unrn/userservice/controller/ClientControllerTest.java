@@ -1,10 +1,10 @@
 package ar.edu.unrn.userservice.controller;
 
-import ar.edu.unrn.userservice.controller.dto.AuthResponseDto;
-import ar.edu.unrn.userservice.controller.dto.ClientDto;
-import ar.edu.unrn.userservice.domain.security.service.UserDetailsServiceImpl;
-import ar.edu.unrn.userservice.domain.service.ClientService;
-import ar.edu.unrn.userservice.domain.service.UserService;
+import ar.edu.unrn.userservice.dto.AuthResponseDto;
+import ar.edu.unrn.userservice.dto.ClientDto;
+import ar.edu.unrn.userservice.security.service.UserDetailsServiceImpl;
+import ar.edu.unrn.userservice.service.ClientService;
+import ar.edu.unrn.userservice.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;

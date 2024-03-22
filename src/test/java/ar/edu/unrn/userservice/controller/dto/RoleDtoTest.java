@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.dto;
+package ar.edu.unrn.userservice.controller.dto;
 
 import ar.edu.unrn.userservice.controller.dto.RoleDto;
 import org.junit.jupiter.api.Assertions;

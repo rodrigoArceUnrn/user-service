@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.service;
+package ar.edu.unrn.userservice.domain.service;
 
 import ar.edu.unrn.userservice.model.User;
 import ar.edu.unrn.userservice.data.repository.UserRepository;

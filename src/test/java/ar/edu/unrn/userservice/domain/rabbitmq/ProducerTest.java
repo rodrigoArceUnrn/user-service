@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.service;
+package ar.edu.unrn.userservice.domain.rabbitmq;
 
 import ar.edu.unrn.userservice.domain.rabbitmq.Producer;
 import org.junit.jupiter.api.BeforeEach;

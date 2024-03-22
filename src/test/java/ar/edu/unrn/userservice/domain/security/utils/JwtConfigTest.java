@@ -1,4 +1,4 @@
-package ar.edu.unrn.userservice.security.utils;
+package ar.edu.unrn.userservice.domain.security.utils;
 
 import ar.edu.unrn.userservice.domain.security.utils.JwtConfig;
 import org.junit.jupiter.api.Assertions;

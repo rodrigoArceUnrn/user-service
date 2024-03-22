@@ -9,7 +9,6 @@ import ar.edu.unrn.userservice.model.Client;
 public interface ClientService {
   void update(ClientDto clientDto);
 
-
   ClientDto getClientById(Long id);
 
   Client getClientByUserId(Long id);
